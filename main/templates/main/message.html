@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+	<h2>Orgent 短信息</h2>
+{% endblock header %}
+
+{% block content %}
+	<h3>我收到的 Orgent 短信息（为空则没有收到任何短信息）: </h3>
+		{% for f in message %}
+			{% if f.touser == user.username %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>
+						{{ f.text }} &nbsp; <small>由 {{ f.owner }} 发送于 {{ f.date_added|date:'Y/m/d H:i' }}</small>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<h4>{{ f.text }}</h4>
+				</div>
+			</div>
+			{% endif %}
+		{% empty %}
+			<li><h3>当前你没有收到任何短信息。</h3></li>
+		{% endfor %}
+	<p>&nbsp;</p>
+	<h3 align="center">发送 Orgent 短信息</h3>
+	<form action="{% url 'main:message' %}" method="POST" class="form">
+		{% csrf_token %}
+		{% bootstrap_form form %}
+		{% buttons %}
+		<button name="submit" class="btn btn-primary">发送</button>
+		{% endbuttons %}
+	</form>
+{% endblock content %}

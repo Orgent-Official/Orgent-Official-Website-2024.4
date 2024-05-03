@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+	<h2>{{ software }} 的全部软件版本。 &nbsp; <small><a href="{% url 'main:products' %}">返回</a></small></h2>
+{% endblock header %}
+
+{% block content %}
+	<ul>
+		{% for version in versions %}
+			<li>
+				<h3>
+					{{ version.name }} <small>发布于 {{ version.date_added|date:'Y/m/d H:i' }} </small> &nbsp;
+					<button class="btn btn-primary" onclick="javascript:window.location.href='{{ version.link }}'">下载</button>
+				</h3>
+			</li>
+		{% empty %}
+			<li>当前该软件还没有任何版本可供下载。</li>
+		{% endfor %}
+	</ul>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+	<h2>更多 Orgent 功能</h2>
+{% endblock header %}
+
+{% block content %}
+	<ul>
+		{% for tool in tools %}
+			<li><h3>{{ tool.name }} &nbsp; <button onclick="javascript:window.location.href='{{ tool.link }}'" class="btn btn-primary">进入</button></h3></li>
+		{% empty %}
+			<li><h3>当前还未发布任何功能。</h3></li>
+		{% endfor %}
+	</ul>
+{% endblock content %}

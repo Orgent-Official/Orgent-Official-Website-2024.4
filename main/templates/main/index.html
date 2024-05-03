@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+	<div class="jumbotron">
+		<h1 align="center">Orgent 官方网站</h1>
+	</div>
+{% endblock header %}
+
+{% block content %}
+	<h2 align="center">海内存知己，天涯若比邻。欢迎来到 Orgent 官方网站。</h2>
+	<p>&nbsp;</p>
+	<p>&nbsp;</p>
+		{% for new in news %}
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3>
+						Orgent 新闻 <small>{{ new.date_added|date:'Y/m/d H:i' }}</small>
+					</h3>
+				</div>
+				<div class="panel-body">
+					{{ new.text|linebreaks }}
+				</div>
+			</div>
+		{% empty %}
+			<h3 align="center">当前还没有任何 Orgent 新闻。</h3>
+		{% endfor %}
+{% endblock content %}

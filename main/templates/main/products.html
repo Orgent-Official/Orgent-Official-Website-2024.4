@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block header %}
+	<h2>Orgent 的软件产品</h2>
+{% endblock header %}
+
+{% block content %}
+	<ul>
+		{% for software in softwares %}
+			<li><h3><a href="{% url 'main:versions' software.id %}">{{ software.name }}</a></h3></li>
+		{% empty %}
+			<li><h3>Orgent 还未发布任何软件。</h3></li>
+		{% endfor %}
+	</ul>
+{% endblock content %}
